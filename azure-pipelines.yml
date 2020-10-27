@@ -22,9 +22,9 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-      containerRegistry: 'ak11224864-docker hub'
-      repository: 'ak11224864/weatherapi'
-      command: 'buildAndPush'
-      Dockerfile: '**/Dockerfile'
-      tags: |
-        $(tag)
+        containerRegistry: 'ak11224864-docker hub'
+        repository: 'ak11224864/weatherapi'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: |
+          $(tag)
