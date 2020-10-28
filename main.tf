@@ -3,6 +3,11 @@ provider "azurerm" {
     features {}
 }
 
+resource "azurerm_resource_group" "tf_test" {
+  name = "tfmainrg"
+  location = "eastus"
+}
+
 terraform {
     backend "azurerm" {
         resource_group_name  = "tf_stgacc_rg"
@@ -18,24 +23,17 @@ variable "imagebuild" {
 }
 
 
-
-resource "azurerm_resource_group" "tf_test" {
-  name = "tfmainrg"
-  location = "centralindia"
-}
-
 resource "azurerm_container_group" "tfcg_test" {
   name                      = "weatherapi"
   location                  = azurerm_resource_group.tf_test.location
   resource_group_name       = azurerm_resource_group.tf_test.name
-
-  ip_address_type     = "public"
-  dns_name_label      = "akmurugan"
-  os_type             = "Linux"
+  ip_address_type           = "public"
+  dns_name_label            = "akmurugandev"
+  os_type                   = "Linux"
 
   container {
       name            = "weatherapi"
-      image           = "ak11224864/weatherapi:${var.imagebuild}"
+      image           = "ak11224864/weatherapi"
         cpu             = "1"
         memory          = "1"
 
