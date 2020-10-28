@@ -28,19 +28,19 @@ stages:
         Dockerfile: '**/Dockerfile'
         tags: |
           $(tag)
-stage: Provision
-displayName: 'Terraforming on Azure...'
-dependsOn: Build
-jobs:
-- job: Provision
-  displayName: 'Provisioning Container Instance'
-  pool:
-   vmImage: 'ubuntu-latest'
-  variables: 
-  - group: TeraformEnvVars
-  steps:
-  - script: |
-      set -e
+- stage: Provision
+  displayName: 'Terraforming on Azure...'
+  dependsOn: Build
+  jobs:
+  - job: Provision
+    displayName: 'Provisioning Container Instance'
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables: 
+    - group: TeraformEnvVars
+    steps:
+    - script: |
+        set -e
 
       terraform init -input=false
       terraform plan -input=false
