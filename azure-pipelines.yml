@@ -43,7 +43,7 @@ stages:
         set -e
 
         terraform init -input=false
-        terraform plan -input=false
+        terraform0.13.4 plan
         terraform apply -input=false -auto-approve
       name: 'RunTerraform'
       displayName: 'Run Terraform'
